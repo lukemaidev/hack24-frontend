@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useSignup } from "@/hooks/use-auth"
+import Link from "next/link"
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const { signup, isLoading, error } = useSignup()
@@ -25,16 +26,6 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       className="rounded-[32px] border border-card bg-card p-0 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]"
     >
       <div className="space-y-6 px-6 pt-6 pb-4">
-        <Button
-          type="button"
-          variant="ghost"
-          size="sm"
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium text-foreground"
-        >
-          <ArrowLeftIcon className="h-4 w-4" />
-          Back
-        </Button>
-
         <div className="space-y-3">
           <CardTitle className="text-3xl font-semibold leading-tight font-serif text-foreground">
             Let us begin.
@@ -113,6 +104,12 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               >
                 Continue with Google
               </Button>
+              <p className="text-center text-sm text-muted">
+                Already have an account?{" "}
+                <Link href="/login" className="font-medium text-foreground underline-offset-4 hover:underline">
+                  Log in
+                </Link>
+              </p>
             </div>
           </div>
         </form>
