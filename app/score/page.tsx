@@ -36,15 +36,15 @@ export default function ScorePage() {
         <div className="overflow-hidden rounded-[32px] border border-card bg-card p-4 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]">
           <div className="rounded-3xl border border-border bg-white p-4">
             <div className="text-sm uppercase tracking-[0.3em] text-muted">Historical Score Trend</div>
-            <div className="mt-4 overflow-hidden rounded-3xl bg-muted p-4">
+            <div className="mt-4 overflow-hidden rounded-3xl bg-secondary p-4">
               <svg viewBox="0 0 200 80" className="h-28 w-full">
-                <line x1="0" y1="65" x2="200" y2="65" stroke="#E8E4DC" strokeDasharray="2 2" />
-                <line x1="0" y1="40" x2="200" y2="40" stroke="#E8E4DC" strokeDasharray="2 2" />
-                <path d="M 10 65 Q 60 60 110 50 T 190 35" fill="none" stroke="#7A8B6F" strokeWidth="1.5" />
-                <circle cx="10" cy="65" r="3" fill="#C97B5C" />
-                <circle cx="70" cy="60" r="3" fill="#C97B5C" />
-                <circle cx="130" cy="50" r="3" fill="#7A8B6F" />
-                <circle cx="190" cy="35" r="3" fill="#7A8B6F" />
+                <line x1="0" y1="65" x2="200" y2="65" stroke="#F3E9DD" strokeDasharray="2 2" />
+                <line x1="0" y1="40" x2="200" y2="40" stroke="#F3E9DD" strokeDasharray="2 2" />
+                <path d="M 10 65 Q 60 60 110 50 T 190 35" fill="none" stroke="#FF6A00" strokeWidth="1.5" />
+                <circle cx="10" cy="65" r="3" fill="#E04900" />
+                <circle cx="70" cy="60" r="3" fill="#E04900" />
+                <circle cx="130" cy="50" r="3" fill="#FF6A00" />
+                <circle cx="190" cy="35" r="3" fill="#FF6A00" />
               </svg>
             </div>
           </div>

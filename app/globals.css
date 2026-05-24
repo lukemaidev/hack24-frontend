@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sora), "Sora", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-heading: var(--font-sora), "Sora", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,77 +48,132 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  --font-sans: var(--font-geist-sans), "Plus Jakarta Sans", Inter, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
-  --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
+/* ─── Brand Colour Tokens ─────────────────────────────────────────────────────
+   Jet Black    #0B0B0C
+   Soft White   #FFFFFF
+   Warm Ivory   #FFF7EF
+   Sand         #F3E9DD
+   Accent Orange#FF6A00
+   Burnt Orange #E04900
+   Peach Glow   #FFC89E
+   Mist Grey    #EDEDED
+   ─────────────────────────────────────────────────────────────────────────── */
 
-  --background: #F1EEE8;
-  --foreground: #1F1D1A;
-  --card: #FAF8F5;
-  --card-foreground: #1F1D1A;
-  --popover: #FAF8F5;
-  --popover-foreground: #1F1D1A;
-  --primary: #C97B5C;
+:root {
+  /* Typeface — Sora only */
+  --font-sans:  var(--font-sora), "Sora", sans-serif;
+  --font-serif: var(--font-sora), "Sora", sans-serif;
+  --font-mono:  "JetBrains Mono", monospace;
+
+  /* Backgrounds */
+  --background:         #FFF7EF;   /* Warm Ivory */
+  --foreground:         #0B0B0C;   /* Jet Black  */
+
+  /* Cards / surfaces */
+  --card:               #FFFFFF;   /* Soft White  */
+  --card-foreground:    #0B0B0C;
+
+  /* Popovers */
+  --popover:            #FFFFFF;
+  --popover-foreground: #0B0B0C;
+
+  /* Primary — Accent Orange */
+  --primary:            #FF6A00;
   --primary-foreground: #FFFFFF;
-  --secondary: #7A8B6F;
-  --secondary-foreground: #FFFFFF;
-  --muted: #6B6760;
-  --muted-foreground: #1F1D1A;
-  --accent: #C97B5C;
-  --accent-foreground: #FFFFFF;
-  --destructive: #B33B2A;
-  --border: #E0DCD3;
-  --input: #FAF8F5;
-  --ring: #7A8B6F;
-  --chart-1: #C97B5C;
-  --chart-2: #7A8B6F;
-  --chart-3: #3D4A5C;
-  --chart-4: #E8E4DC;
-  --chart-5: #F1EEE8;
+
+  /* Secondary — Sand */
+  --secondary:          #F3E9DD;
+  --secondary-foreground: #0B0B0C;
+
+  /* Muted text — warm mid-grey */
+  --muted:              #9A8070;
+  --muted-foreground:   #0B0B0C;
+
+  /* Accent — Peach Glow */
+  --accent:             #FFC89E;
+  --accent-foreground:  #0B0B0C;
+
+  /* Destructive — Burnt Orange */
+  --destructive:        #E04900;
+
+  /* Borders & inputs */
+  --border:             #F3E9DD;   /* Sand */
+  --input:              #FFFFFF;
+  --ring:               #FF6A00;   /* Accent Orange */
+
+  /* Charts */
+  --chart-1:            #FF6A00;
+  --chart-2:            #E04900;
+  --chart-3:            #FFC89E;
+  --chart-4:            #F3E9DD;
+  --chart-5:            #EDEDED;
+
   --radius: 0.75rem;
-  --sidebar: #FAF8F5;
-  --sidebar-foreground: #1F1D1A;
-  --sidebar-primary: #7A8B6F;
+
+  /* Sidebar */
+  --sidebar:                    #FFFFFF;
+  --sidebar-foreground:         #0B0B0C;
+  --sidebar-primary:            #FF6A00;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #C97B5C;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #E0DCD3;
-  --sidebar-ring: #7A8B6F;
+  --sidebar-accent:             #FFC89E;
+  --sidebar-accent-foreground:  #0B0B0C;
+  --sidebar-border:             #F3E9DD;
+  --sidebar-ring:               #FF6A00;
 }
 
 .dark {
-  --background: #131211;
-  --foreground: #F4F2F0;
-  --card: #1C1B1A;
-  --card-foreground: #F4F2F0;
-  --popover: #1C1B1A;
-  --popover-foreground: #F4F2F0;
-  --primary: #C97B5C;
+  /* Backgrounds */
+  --background:         #0B0B0C;   /* Jet Black  */
+  --foreground:         #FFFFFF;   /* Soft White */
+
+  /* Cards */
+  --card:               #161617;
+  --card-foreground:    #FFFFFF;
+
+  /* Popovers */
+  --popover:            #161617;
+  --popover-foreground: #FFFFFF;
+
+  /* Primary — Accent Orange (unchanged) */
+  --primary:            #FF6A00;
   --primary-foreground: #FFFFFF;
-  --secondary: #7A8B6F;
+
+  /* Secondary — dark surface */
+  --secondary:          #1F1F20;
   --secondary-foreground: #FFFFFF;
-  --muted: #A6A29C;
-  --muted-foreground: #F4F2F0;
-  --accent: #C97B5C;
-  --accent-foreground: #FFFFFF;
-  --destructive: #B33B2A;
-  --border: #3A3734;
-  --input: #262423;
-  --ring: #7A8B6F;
-  --chart-1: #C97B5C;
-  --chart-2: #7A8B6F;
-  --chart-3: #A6A29C;
-  --chart-4: #302E2D;
-  --chart-5: #1C1B1A;
-  --sidebar: #1C1B1A;
-  --sidebar-foreground: #F4F2F0;
-  --sidebar-primary: #7A8B6F;
+
+  /* Muted */
+  --muted:              #8A8A8A;
+  --muted-foreground:   #FFFFFF;
+
+  /* Accent — Peach Glow (softened on dark) */
+  --accent:             #FFC89E;
+  --accent-foreground:  #0B0B0C;
+
+  /* Destructive */
+  --destructive:        #E04900;
+
+  /* Borders & inputs */
+  --border:             #2A2A2B;
+  --input:              #1F1F20;
+  --ring:               #FF6A00;
+
+  /* Charts */
+  --chart-1:            #FF6A00;
+  --chart-2:            #E04900;
+  --chart-3:            #FFC89E;
+  --chart-4:            #2A2A2B;
+  --chart-5:            #161617;
+
+  /* Sidebar */
+  --sidebar:                    #161617;
+  --sidebar-foreground:         #FFFFFF;
+  --sidebar-primary:            #FF6A00;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #C97B5C;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #3A3734;
-  --sidebar-ring: #7A8B6F;
+  --sidebar-accent:             #FFC89E;
+  --sidebar-accent-foreground:  #0B0B0C;
+  --sidebar-border:             #2A2A2B;
+  --sidebar-ring:               #FF6A00;
 }
 
 @layer base {
@@ -135,8 +190,10 @@
     font-family: var(--font-sans);
   }
 
+  /* Sora weight helpers */
   .font-serif {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans); /* Sora replaces the old serif */
+    font-weight: 700;              /* Display / heading weight */
   }
 
   .bg-card {

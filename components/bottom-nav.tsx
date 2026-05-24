@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ActivityIcon, BookmarkIcon, GridIcon, UserIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const navItems = [
   { label: "Portal", href: "/portal", icon: GridIcon },
@@ -21,18 +22,17 @@ export default function BottomNav() {
           const active = pathname === item.href
           const Icon = item.icon
           return (
-            <Link
+            <Button
               key={item.href}
-              href={item.href}
-              className={`flex flex-col items-center justify-center rounded-3xl border px-2 py-2 text-xs font-medium transition ${
-                active
-                  ? "border-primary bg-primary/10 text-foreground"
-                  : "border-border bg-background text-muted hover:border-primary hover:bg-primary/5"
-              }`}
+              asChild
+              variant={active ? "default" : "ghost"}
+              className="flex h-auto flex-col items-center justify-center gap-0 rounded-3xl px-2 py-2 text-xs font-medium"
             >
-              <Icon className="mb-1 h-4 w-4" />
-              {item.label}
-            </Link>
+              <Link href={item.href}>
+                <Icon className="mb-1 h-4 w-4" />
+                {item.label}
+              </Link>
+            </Button>
           )
         })}
       </div>
