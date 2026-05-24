@@ -66,6 +66,7 @@ export default function ScorePage() {
           </div>
         </div>
 
+        <div className="h-24" />
         <BottomNav />
       </div>
     </div>

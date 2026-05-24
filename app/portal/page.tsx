@@ -1,4 +1,5 @@
 import BottomNav from "@/components/bottom-nav"
+import { InfluenceReachCard } from "@/components/influence-reach-card"
 
 export default function PortalPage() {
   return (
@@ -41,6 +42,9 @@ export default function PortalPage() {
           </div>
         </div>
 
+        <InfluenceReachCard />
+
+        <div className="h-24" />
         <BottomNav />
       </div>
     </div>

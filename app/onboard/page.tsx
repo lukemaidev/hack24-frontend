@@ -22,6 +22,7 @@ import { AuditSummary } from "@/components/onboard/audit-summary"
 import { PrescriptionCover } from "@/components/onboard/prescription-cover"
 import { MentorChannels } from "@/components/onboard/mentor-channels"
 import { GatewayLanding } from "@/components/onboard/gateway-landing"
+import { UploadStep } from "@/components/onboard/upload-step"
 import { useRouter } from "next/navigation"
 
 export default function OnboardPage() {
@@ -45,6 +46,7 @@ export default function OnboardPage() {
 
   const navigateToPortal = () => {
     // Implement navigation logic here, e.g., using Next.js router
+    
     router.push("/portal");
   }
 
@@ -117,6 +119,7 @@ export default function OnboardPage() {
     // Section 3: Platforms Ingestion (screens 15–18)
     <PermissionIntro key="permission-intro" onNext={handleNext} />,
     <PlatformConnect key="platform-connect" onNext={handleNext} onBack={handleBack} />,
+    <UploadStep key="upload-step" onNext={handleNext} onBack={handleBack} />,
     <AuditRunning key="audit-running" onNext={handleNext} />,
 
     // Section 4: The Audit Reveal (screens 19–23)
@@ -147,7 +150,7 @@ export default function OnboardPage() {
   return (
     <div className="min-h-screen bg-background px-1 py-1">
       <div className="mx-auto flex h-full min-h-screen w-full max-w-sm items-center justify-center px-1">
-        <div className="w-full space-y-4">
+        <div className="w-full space-y-4 pb-24">
           <div className="rounded-[32px] border border-card bg-card/40 p-4 shadow-[0_20px_50px_-30px_rgba(31,29,26,0.18)]">
             <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.28em] text-muted">
               <span>Onboarding</span>
