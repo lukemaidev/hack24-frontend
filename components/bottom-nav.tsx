@@ -15,7 +15,7 @@ export default function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="rounded-t-[32px] border border-border bg-card px-3 py-3 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 rounded-t-[32px] border border-border bg-card px-3 py-3 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)] md:relative md:bottom-auto md:left-auto md:right-auto md:z-auto">
       <div className="grid grid-cols-4 gap-2">
         {navItems.map((item) => {
           const active = pathname === item.href

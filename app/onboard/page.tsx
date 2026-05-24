@@ -11,8 +11,21 @@ import { ConstraintStep } from "@/components/onboard/constraint-step"
 import { TuesdayMorning } from "@/components/onboard/tuesday-morning"
 import { RoleModels } from "@/components/onboard/role-models"
 import { VisionSummary } from "@/components/onboard/vision-summary"
+import { PermissionIntro } from "@/components/onboard/permission-intro"
+import { PlatformConnect } from "@/components/onboard/platform-connect"
+import { AuditRunning } from "@/components/onboard/audit-running"
+import { ScoreReveal } from "@/components/onboard/score-reveal"
+import { RadarChart } from "@/components/onboard/radar-chart"
+import { DietBreakdown } from "@/components/onboard/diet-breakdown"
+import { IdentityDrift } from "@/components/onboard/identity-drift"
+import { AuditSummary } from "@/components/onboard/audit-summary"
+import { PrescriptionCover } from "@/components/onboard/prescription-cover"
+import { MentorChannels } from "@/components/onboard/mentor-channels"
+import { GatewayLanding } from "@/components/onboard/gateway-landing"
+import { useRouter } from "next/navigation"
 
 export default function OnboardPage() {
+  const router = useRouter()
   const [step, setStep] = useState(0)
   const [aspiration, setAspiration] = useState("")
   const [archetype, setArchetype] = useState("Builder")
@@ -30,7 +43,13 @@ export default function OnboardPage() {
     setStep((current) => Math.max(current - 1, 0))
   }
 
+  const navigateToPortal = () => {
+    // Implement navigation logic here, e.g., using Next.js router
+    router.push("/portal");
+  }
+
   const steps = [
+    // Section 2: Vision & Identity (screens 6–14)
     <Welcome key="welcome" onNext={handleNext} />,
     <VisionQ1
       key="vision-q1"
@@ -94,6 +113,30 @@ export default function OnboardPage() {
       onNext={handleNext}
       onBack={() => setStep(1)}
     />,
+
+    // Section 3: Platforms Ingestion (screens 15–18)
+    <PermissionIntro key="permission-intro" onNext={handleNext} />,
+    <PlatformConnect key="platform-connect" onNext={handleNext} onBack={handleBack} />,
+    <AuditRunning key="audit-running" onNext={handleNext} />,
+
+    // Section 4: The Audit Reveal (screens 19–23)
+    <ScoreReveal key="score-reveal" onNext={handleNext} />,
+    <RadarChart key="radar-chart" onNext={handleNext} onBack={handleBack} />,
+    <DietBreakdown key="diet-breakdown" onNext={handleNext} onBack={handleBack} />,
+    <IdentityDrift
+      key="identity-drift"
+      aspiration={aspiration}
+      onNext={handleNext}
+      onBack={handleBack}
+    />,
+    <AuditSummary key="audit-summary" onNext={handleNext} onBack={handleBack} />,
+
+    // Section 5: Curated Prescriptions (screens 24–25)
+    <PrescriptionCover key="prescription-cover" onNext={handleNext} onBack={handleBack} />,
+    <MentorChannels key="mentor-channels" onNext={handleNext} onBack={handleBack} />,
+
+    // Screen 29: Gateway Landing
+    <GatewayLanding key="gateway-landing" onNext={navigateToPortal} />,
   ]
 
   const progress = useMemo(
