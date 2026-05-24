@@ -54,7 +54,7 @@ export function useSignup() {
 
       // Fetch full profile by ID and store it
       const user = await fetchUserById(userId)
-      setUser(user)
+      setUser(user.data)
 
       router.push("/onboard")
     } catch (err) {
