@@ -2,12 +2,24 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { useCompleteOnboarding } from "@/hooks/use-auth"
 
 interface GatewayLandingProps {
   onNext: () => void
 }
 
 export function GatewayLanding({ onNext }: GatewayLandingProps) {
+  const { completeOnboarding, isLoading } = useCompleteOnboarding()
+
+  const handleOpen = async () => {
+    try {
+      await completeOnboarding()
+    } finally {
+      // Navigate regardless — don't block the user if the PATCH fails
+      onNext()
+    }
+  }
+
   return (
     <Card className="h-full w-full rounded-[32px] border border-card bg-card p-0 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]">
       <CardContent className="flex h-full flex-col items-center justify-between gap-8 p-6 text-center">
@@ -25,8 +37,13 @@ export function GatewayLanding({ onNext }: GatewayLandingProps) {
           </p>
         </div>
 
-        <Button type="button" onClick={onNext} className="w-full rounded-full py-3 text-sm font-semibold">
-          Open my portal
+        <Button
+          type="button"
+          onClick={handleOpen}
+          disabled={isLoading}
+          className="w-full rounded-full py-3 text-sm font-semibold"
+        >
+          {isLoading ? "Setting up…" : "Open my portal"}
         </Button>
       </CardContent>
     </Card>
