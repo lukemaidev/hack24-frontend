@@ -8,12 +8,11 @@ const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-async function fetchUserById(_id: string): Promise<User> {
+async function fetchUserById(_id: string): Promise<{ data: User }> {
   console.log("Fetching user profile with ID:", _id)
-  const res = await fetch(`${API_URL}/api/users/${_id}`, {
-  })
+  const res = await fetch(`${API_URL}/api/users/${_id}`)
   if (!res.ok) throw new Error("Failed to load user profile.")
-  return res.json() as Promise<User>
+  return res.json() as Promise<{ data: User }>
 }
 
 // ─── useSignup ────────────────────────────────────────────────────────────────
@@ -26,7 +25,7 @@ interface SignupPayload {
 
 export function useSignup() {
   const router = useRouter()
-  const { setUser, setToken } = useUserStore()
+  const { setUser } = useUserStore()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -47,10 +46,8 @@ export function useSignup() {
         throw new Error(data?.message ?? "Signup failed. Please try again.")
       }
 
-      const token: string = data.token
       const userId: string | undefined = data.data?.user?._id
       if (!userId) throw new Error("User ID not found in signup response.")
-      setToken(token)
 
       // Fetch full profile by ID and store it
       const user = await fetchUserById(userId)
@@ -97,7 +94,6 @@ export function useLogin() {
         throw new Error(data?.message ?? "Login failed. Please try again.")
       }
 
-      const token: string = data.token
       const userId: string | undefined = data.data?.user?._id
       if (!userId) throw new Error("User ID not found in login response.")
 
@@ -107,7 +103,7 @@ export function useLogin() {
       console.log("[useUserStore] user after login:", useUserStore.getState().user)
 
       // Route based on where the user is in the flow
-      router.push(user.onboardingCompleted ? "/portal" : "/onboard")
+      router.push(user.data.onboardingCompleted ? "/portal" : "/onboard")
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.")
     } finally {
@@ -121,7 +117,7 @@ export function useLogin() {
 // ─── useCompleteOnboarding ────────────────────────────────────────────────────
 
 export function useCompleteOnboarding() {
-  const { user, token, setUser } = useUserStore()
+  const { user, setUser } = useUserStore()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -136,10 +132,7 @@ export function useCompleteOnboarding() {
 
       const res = await fetch(`${API_URL}/api/users/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ onboardingCompleted: true }),
       })
 

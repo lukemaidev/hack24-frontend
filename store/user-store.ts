@@ -13,11 +13,9 @@ export interface User {
 
 interface UserState {
   user: User | null
-  token: string | null
 
   // Actions
   setUser: (user: User) => void
-  setToken: (token: string) => void
   updateUser: (patch: Partial<User>) => void
   clearUser: () => void
 }
@@ -28,7 +26,6 @@ export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
       user: null,
-      token: null,
 
       setUser: (user) => set({ user }),
 
@@ -37,11 +34,11 @@ export const useUserStore = create<UserState>()(
           user: state.user ? { ...state.user, ...patch } : null,
         })),
 
-      clearUser: () => set({ user: null, token: null }),
+      clearUser: () => set({ user: null }),
     }),
     {
       name: "ah-user", // persisted to localStorage under this key
-      partialize: (state) => ({ token: state.token, user: state.user }),
+      partialize: (state) => ({ user: state.user }),
     }
   )
 )
