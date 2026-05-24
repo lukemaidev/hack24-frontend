@@ -78,7 +78,7 @@ export function InfluenceReachCard() {
               >
                 <Icon className="h-5 w-5 text-white" />
               </div>
-              <span className="font-serif text-4xl font-bold text-foreground">4</span>
+              <span className="font-serif text-4xl font-bold text-foreground">5</span>
             </div>
 
             {/* Description */}
