@@ -2,9 +2,11 @@ import { SignupForm } from "@/components/signup-form"
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <SignupForm />
+    <div className="min-h-screen bg-background px-1 py-1">
+      <div className="mx-auto flex h-full min-h-screen w-full max-w-sm items-center justify-center px-1">
+        <div className="h-full w-full">
+          <SignupForm className="h-full" />
+        </div>
       </div>
     </div>
   )

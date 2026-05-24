@@ -1,16 +1,11 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
 export default function WelcomePage() {
   return (
-    <div className="min-h-screen bg-background py-10">
-      <main className="mx-auto flex min-h-screen w-full max-w-sm items-center justify-center px-4">
-        <Card className="w-full rounded-[32px] border border-card bg-card p-7 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]">
+    <div className="min-h-screen bg-background px-1 py-1 ">
+      <div className="mx-auto h-full flex min-h-screen w-full max-w-sm items-center justify-center px-1 ">
+        <Card className="h-full w-full rounded-[32px] border border-card bg-card p-7 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]">
           <CardContent className="flex h-full flex-col justify-between gap-8">
             <div className="space-y-6">
               <span className="text-xs uppercase tracking-[0.28em] text-muted">A/H</span>
@@ -32,7 +27,7 @@ export default function WelcomePage() {
             </div>
           </CardContent>
         </Card>
-      </main>
+      </div>
     </div>
   );
 }
