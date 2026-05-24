@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 
 interface AuditRunningProps {
@@ -16,18 +16,20 @@ const stages = [
 
 export function AuditRunning({ onNext }: AuditRunningProps) {
   const [stageIndex, setStageIndex] = useState(0)
+  const onNextRef = useRef(onNext)
+  useEffect(() => { onNextRef.current = onNext }, [onNext])
 
   useEffect(() => {
     const interval = setInterval(() => {
       setStageIndex((prev) => {
         if (prev < stages.length - 1) return prev + 1
         clearInterval(interval)
-        setTimeout(onNext, 900)
+        setTimeout(() => onNextRef.current(), 900)
         return prev
       })
     }, 1200)
     return () => clearInterval(interval)
-  }, [onNext])
+  }, [])
 
   const stage = stages[stageIndex]
 

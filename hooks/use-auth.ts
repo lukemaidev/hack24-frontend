@@ -76,7 +76,7 @@ interface LoginPayload {
 
 export function useLogin() {
   const router = useRouter()
-  const { setUser, setToken } = useUserStore()
+  const { setUser } = useUserStore()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -100,7 +100,6 @@ export function useLogin() {
       const token: string = data.token
       const userId: string | undefined = data.data?.user?._id
       if (!userId) throw new Error("User ID not found in login response.")
-      setToken(token)
 
       // Fetch full profile by ID — this is the source of truth for onboardingCompleted
       const user = await fetchUserById(userId)

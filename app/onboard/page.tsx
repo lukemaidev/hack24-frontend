@@ -13,6 +13,7 @@ import { RoleModels } from "@/components/onboard/role-models"
 import { VisionSummary } from "@/components/onboard/vision-summary"
 import { PermissionIntro } from "@/components/onboard/permission-intro"
 import { PlatformConnect } from "@/components/onboard/platform-connect"
+import { PlatformUpload } from "@/components/onboard/platform-upload"
 import { AuditRunning } from "@/components/onboard/audit-running"
 import { ScoreReveal } from "@/components/onboard/score-reveal"
 import { RadarChart } from "@/components/onboard/radar-chart"
@@ -22,7 +23,6 @@ import { AuditSummary } from "@/components/onboard/audit-summary"
 import { PrescriptionCover } from "@/components/onboard/prescription-cover"
 import { MentorChannels } from "@/components/onboard/mentor-channels"
 import { GatewayLanding } from "@/components/onboard/gateway-landing"
-import { UploadStep } from "@/components/onboard/upload-step"
 import { useRouter } from "next/navigation"
 
 export default function OnboardPage() {
@@ -35,6 +35,7 @@ export default function OnboardPage() {
   const [stage, setStage] = useState("Just starting out")
   const [constraint, setConstraint] = useState("Time")
   const [tuesdayText, setTuesdayText] = useState("")
+  const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([])
 
   const handleNext = () => {
     setStep((current) => Math.min(current + 1, steps.length - 1))
@@ -53,49 +54,7 @@ export default function OnboardPage() {
   const steps = [
     // Section 2: Vision & Identity (screens 6–14)
     <Welcome key="welcome" onNext={handleNext} />,
-    <VisionQ1
-      key="vision-q1"
-      value={aspiration}
-      onChange={setAspiration}
-      onNext={handleNext}
-      onSkip={() => setStep(2)}
-    />,
-    <ArchetypePicker
-      key="archetype"
-      value={archetype}
-      onSelect={setArchetype}
-      onNext={handleNext}
-      onBack={handleBack}
-    />,
-    <VisionQ2
-      key="vision-q2"
-      archetype={archetype}
-      value={aspirationDrill}
-      onChange={setAspirationDrill}
-      onNext={handleNext}
-      onBack={handleBack}
-    />,
-    <TimeframeStep
-      key="timeframe"
-      value={timeframe}
-      onSelect={setTimeframe}
-      onNext={handleNext}
-      onBack={handleBack}
-    />,
-    <StageStep
-      key="stage"
-      value={stage}
-      onSelect={setStage}
-      onNext={handleNext}
-      onBack={handleBack}
-    />,
-    <ConstraintStep
-      key="constraint"
-      value={constraint}
-      onSelect={setConstraint}
-      onNext={handleNext}
-      onBack={handleBack}
-    />,
+   
     <TuesdayMorning
       key="tuesday"
       value={tuesdayText}
@@ -103,40 +62,28 @@ export default function OnboardPage() {
       onNext={handleNext}
       onBack={handleBack}
     />,
-    <RoleModels key="role-models" onNext={handleNext} onBack={handleBack} />,
-    <VisionSummary
-      key="vision-summary"
-      aspiration={aspiration}
-      archetype={archetype}
-      drillDetail={aspirationDrill}
-      timeframe={timeframe}
-      stage={stage}
-      constraint={constraint}
-      onNext={handleNext}
-      onBack={() => setStep(1)}
-    />,
 
     // Section 3: Platforms Ingestion (screens 15–18)
     <PermissionIntro key="permission-intro" onNext={handleNext} />,
-    <PlatformConnect key="platform-connect" onNext={handleNext} onBack={handleBack} />,
-    <UploadStep key="upload-step" onNext={handleNext} onBack={handleBack} />,
+    <PlatformConnect
+      key="platform-connect"
+      selected={selectedPlatforms}
+      onSelect={setSelectedPlatforms}
+      onNext={handleNext}
+      onBack={handleBack}
+    />,
+    <PlatformUpload
+      key="platform-upload"
+      selectedPlatforms={selectedPlatforms}
+      onNext={handleNext}
+      onBack={handleBack}
+    />,
     <AuditRunning key="audit-running" onNext={handleNext} />,
 
     // Section 4: The Audit Reveal (screens 19–23)
     <ScoreReveal key="score-reveal" onNext={handleNext} />,
     <RadarChart key="radar-chart" onNext={handleNext} onBack={handleBack} />,
     <DietBreakdown key="diet-breakdown" onNext={handleNext} onBack={handleBack} />,
-    <IdentityDrift
-      key="identity-drift"
-      aspiration={aspiration}
-      onNext={handleNext}
-      onBack={handleBack}
-    />,
-    <AuditSummary key="audit-summary" onNext={handleNext} onBack={handleBack} />,
-
-    // Section 5: Curated Prescriptions (screens 24–25)
-    <PrescriptionCover key="prescription-cover" onNext={handleNext} onBack={handleBack} />,
-    <MentorChannels key="mentor-channels" onNext={handleNext} onBack={handleBack} />,
 
     // Screen 29: Gateway Landing
     <GatewayLanding key="gateway-landing" onNext={navigateToPortal} />,

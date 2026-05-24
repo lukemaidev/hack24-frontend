@@ -3,7 +3,7 @@ import { InfluenceReachCard } from "@/components/influence-reach-card"
 
 export default function PortalPage() {
   return (
-    <div className="min-h-screen bg-background px-1 py-1">
+    <div className="min-h-screen bg-background px-1 pt-4 pb-1">
       <div className="mx-auto flex min-h-screen w-full max-w-sm flex-col gap-4 px-1">
         <div className="rounded-[32px] border border-card bg-card p-6 shadow-[0_30px_70px_-40px_rgba(31,29,26,0.18)]">
           <div className="flex items-center justify-between gap-4">
